@@ -1,3 +1,5 @@
+import { greet } from "./greet.js";
+
 /**
  * Solve this problem using ES modules (ESM).
  * ES modules allow you break up your code into multiple files (or modules), and then share code between different files.
@@ -32,7 +34,7 @@ const greet = (name) => {
  **/
 
 const highestNumber = (array) => {
-  // Write your answer here
+  return array.sort((a, b) => a - b).pop();
 };
 
 /**
@@ -45,7 +47,7 @@ const highestNumber = (array) => {
  **/
 
 const combineArray = (array1, array2) => {
-  // Write your answer here
+  return [...array1, ...array2];
 };
 
 /**
@@ -56,7 +58,7 @@ const combineArray = (array1, array2) => {
  */
 
 const combineObject = (obj1, obj2) => {
-  // Write your answer here
+  return { ...obj1, ...obj2 };
 };
 
 /**
@@ -67,7 +69,7 @@ const combineObject = (obj1, obj2) => {
  */
 
 const doubleValues = (arr) => {
-  // Write your answer here
+  return arr.map((num) => num * 2);
 };
 
 /**
@@ -80,7 +82,7 @@ const doubleValues = (arr) => {
  *   onlyEvenValues([5,1,2,3,10]) // [2,10]
  */
 const onlyEvenValues = (arr) => {
-  // Write your answer here
+  return arr.filter((num) => num % 2 === 0);
 };
 
 /**
@@ -102,7 +104,14 @@ const onlyEvenValues = (arr) => {
  *  removeVowels('ZZZZZZ') // ('zzzzzz')
  */
 const removeVowels = (str) => {
-  // Write your answer here
+  const vowels = ["a", "e", "i", "o", "u"];
+  const newStr = str
+    .toLowerCase()
+    .split("")
+    .filter((char) => !vowels.includes(char))
+    .join("");
+
+  return newStr;
 };
 
 /**
@@ -122,7 +131,7 @@ const getIsHungryText = () => {
   // } else {
   //   isHungry = "Keep coding!";
   // }
-
+  const isHungry = isStomachEmpty ? "Go eat something." : "Keep coding!";
   return isHungry;
 };
 
@@ -140,8 +149,9 @@ const getTempOfTomorrow = () => {
   };
 
   // Start of what you should change
-  const today = AVG_TEMPERATURES.today;
-  const tomorrow = AVG_TEMPERATURES.tomorrow;
+  // const today = AVG_TEMPERATURES.today;
+  // const tomorrow = AVG_TEMPERATURES.tomorrow;
+  const { today, tomorrow } = AVG_TEMPERATURES;
   // End of what you should change
   return `Today's temperature is ${today}.\nTomorrow's temperature is ${tomorrow}`;
 };
@@ -158,7 +168,7 @@ const getTempOfTomorrow = () => {
  *  addItems([1,-2,-3]) // -4
  */
 const addItems = (arr) => {
-  // Write your answer here
+  return arr.reduce((acc, curr) => acc + curr, 0);
 };
 
 /**
@@ -173,8 +183,14 @@ const addItems = (arr) => {
  */
 
 const removeDuplicates = (array) => {
-  // Write your answer here
-  // Return an array of unique values
+  const duplicates = [];
+  return array.filter((num) => {
+    if (duplicates.includes(num)) {
+      return false;
+    }
+    duplicates.push(num);
+    return num;
+  });
 };
 
 /**
