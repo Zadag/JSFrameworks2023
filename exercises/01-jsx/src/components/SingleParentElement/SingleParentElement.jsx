@@ -5,9 +5,10 @@ import React from "react";
  */
 const SingleParentElement = () => {
   return (
+    <>
       <p>React is the most popular JavaScript Framework.</p>
       <p>React keeps the doctor away!</p>
-   
+    </>
   );
 };
 

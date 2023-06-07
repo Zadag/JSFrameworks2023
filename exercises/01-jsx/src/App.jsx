@@ -1,6 +1,7 @@
 import Cats from "./components/Cats/Cats";
 import SingleParentElement from "./components/SingleParentElement/SingleParentElement";
 import Person from "./components/Person/Person";
+import Me from "./components/Me/_Me_";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <div className="pt-3 pb-3">
         <Person />
       </div>
+      <Me />
     </div>
   );
 }

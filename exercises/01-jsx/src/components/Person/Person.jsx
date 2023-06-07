@@ -11,14 +11,19 @@ const Person = () => {
    * @example new Date(Date.now()).getFullYear()
    */
 
+  const personAge = (person) => {
+    const currentYear = new Date().getFullYear();
+    return currentYear - person.birthYear;
+  };
+
   return (
     <div>
       <h1>Featured Person</h1>
-      {/* Using JSX, plugin name below from the person object */}
+      {person.name}
       <div>Name: _____</div>
-      {/* Using JSX, plugin occupation below from the person object */}
+      {person.occupation}
       <div>Occupation: _____</div>
-      {/* Using JSX, plugin the birth year using a function that converts age to birth year */}
+      {personAge(person)}
       <div>Age: _____</div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { greet } from "./greet.js";
+import greet from "./greet.js";
 
 /**
  * Solve this problem using ES modules (ESM).
