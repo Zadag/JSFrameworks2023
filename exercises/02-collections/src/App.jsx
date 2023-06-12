@@ -1,8 +1,20 @@
 import "./App.css";
-// import something here
+import { technologies } from "./images/technologies";
+import { phones } from "./images/phones";
 
 function App() {
-  return <div className="App">{/* Complete me */}</div>;
+  return (
+    <div className="App">
+      {[
+        ...technologies.map((image) => {
+          return <img src={image}></img>;
+        }),
+        ...Object.values(phones).map((image) => {
+          return <img src={image}></img>;
+        }),
+      ]}
+    </div>
+  );
 }
 
 export default App;
