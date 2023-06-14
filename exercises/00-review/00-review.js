@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import greet from "./greet.js";
+=======
+import greet from './greet.js';
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 
 /**
  * Solve this problem using ES modules (ESM).
@@ -9,9 +13,7 @@ import greet from "./greet.js";
  * 1. Create a new file in the same folder as this file called "greet.js". (NOTE that you will need to include the extension ".js" in order for this to work)
  * 2. Copy the "greet" function below and paste it into the new file "greet.js"
 
-const greet = (name) => {
-  return `Hello ${name}!`;
-};
+
 
  * 3. Export the "greet" function from "greet.js"
  * 4. Import the function at the top of this file using the name "greet"
@@ -28,13 +30,19 @@ const greet = (name) => {
  * @param  { array }
  * @returns { number } the highest number that was in the array
  * @example
+ *
  * highestNumber([1, 10, 2, 3, 4]) // 10
  * highestNumber([-1, -5, -4]) // -1
  *
  **/
 
 const highestNumber = (array) => {
+<<<<<<< HEAD
   return array.sort((a, b) => a - b).pop();
+=======
+  // Write your answer here
+  return array.reduce((a, b) => Math.max(a, b), -Infinity);
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -47,7 +55,13 @@ const highestNumber = (array) => {
  **/
 
 const combineArray = (array1, array2) => {
+<<<<<<< HEAD
   return [...array1, ...array2];
+=======
+  // Write your answer here
+  const array = [...array1, ...array2];
+  return array;
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -58,7 +72,13 @@ const combineArray = (array1, array2) => {
  */
 
 const combineObject = (obj1, obj2) => {
+<<<<<<< HEAD
   return { ...obj1, ...obj2 };
+=======
+  // Write your answer here
+  let combo = { ...obj1, ...obj2 };
+  return combo;
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -69,7 +89,13 @@ const combineObject = (obj1, obj2) => {
  */
 
 const doubleValues = (arr) => {
+<<<<<<< HEAD
   return arr.map((num) => num * 2);
+=======
+  // Write your answer here
+  let doubles = arr.map((num) => num * 2); // each num gets multiplied by 2
+  return doubles;
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -82,7 +108,12 @@ const doubleValues = (arr) => {
  *   onlyEvenValues([5,1,2,3,10]) // [2,10]
  */
 const onlyEvenValues = (arr) => {
+<<<<<<< HEAD
   return arr.filter((num) => num % 2 === 0);
+=======
+  // Write your answer here
+  return arr.filter((num) => num % 2 === 0); //divisibility by 2 and remainder is 0 it is an even number
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -104,6 +135,7 @@ const onlyEvenValues = (arr) => {
  *  removeVowels('ZZZZZZ') // ('zzzzzz')
  */
 const removeVowels = (str) => {
+<<<<<<< HEAD
   const vowels = ["a", "e", "i", "o", "u"];
   const newStr = str
     .toLowerCase()
@@ -112,6 +144,20 @@ const removeVowels = (str) => {
     .join("");
 
   return newStr;
+=======
+  // Write your answer here
+  const vowels = ["a", "e", "i", "o", "u"]; // vowels so we know what we are looking for
+  let newStr = str.toLowerCase(); // makes any string lowercase and easier to filter thru
+  let leftOver = ""; // we store left over letters after taking out vowels
+  for (let i = 0; i < newStr.length; i++) {
+    // filters thru each letter in a string
+    if (!vowels.includes(newStr[i])) {
+      // if not a vowel it gets added to leftOver
+      leftOver += newStr[i];
+    }
+  }
+  return leftOver;
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -125,7 +171,7 @@ const getIsHungryText = () => {
   let isStomachEmpty = false;
   /* convert this if else statement into a ternary expression */
 
-  // let isHungry;
+  let isHungry = isStomachEmpty ? "Go eat something." : "Keep coding!";
   // if (isStomachEmpty) {
   //   isHungry = "Go eat something.";
   // } else {
@@ -149,8 +195,11 @@ const getTempOfTomorrow = () => {
   };
 
   // Start of what you should change
+<<<<<<< HEAD
   // const today = AVG_TEMPERATURES.today;
   // const tomorrow = AVG_TEMPERATURES.tomorrow;
+=======
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
   const { today, tomorrow } = AVG_TEMPERATURES;
   // End of what you should change
   return `Today's temperature is ${today}.\nTomorrow's temperature is ${tomorrow}`;
@@ -168,7 +217,12 @@ const getTempOfTomorrow = () => {
  *  addItems([1,-2,-3]) // -4
  */
 const addItems = (arr) => {
+<<<<<<< HEAD
   return arr.reduce((acc, curr) => acc + curr, 0);
+=======
+  // Write your answer here
+  return arr.reduce((accum, currentValue) => accum + currentValue);
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -183,6 +237,7 @@ const addItems = (arr) => {
  */
 
 const removeDuplicates = (array) => {
+<<<<<<< HEAD
   const duplicates = [];
   return array.filter((num) => {
     if (duplicates.includes(num)) {
@@ -191,6 +246,12 @@ const removeDuplicates = (array) => {
     duplicates.push(num);
     return num;
   });
+=======
+  // Write your answer here
+  return [...new Set(array)];
+  //set is a data structure that creates a new set object which auto removes dup values
+  // Return an array of unique values
+>>>>>>> 1102a559497e14c7cbd0096e6cec5a4f1808d6fb
 };
 
 /**
@@ -205,15 +266,15 @@ try {
   // However, I am just using try ... catch to get the unit test to work
 }
 export {
-  greeter,
-  highestNumber,
+  addItems,
   combineArray,
   combineObject,
   doubleValues,
-  onlyEvenValues,
-  removeVowels,
   getIsHungryText,
   getTempOfTomorrow,
-  addItems,
+  greeter,
+  highestNumber,
+  onlyEvenValues,
   removeDuplicates,
+  removeVowels,
 };
