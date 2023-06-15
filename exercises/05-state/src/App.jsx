@@ -1,16 +1,19 @@
 import "./App.css";
-// Import LessText here
+import LessText from "./components/LessText/LessText";
 
 // Import CharacterCount here
 
 //Import GuessTheNumber
+
+const appText = "The quick brown fox jumped over the lazy dog";
+const maxLength = 10;
 
 function App() {
   return (
     <>
       <div className="container pt-4 pb-4">
         <h1 className="h3">Challenge 1 - Less Text</h1>
-        {/* Add LessText with props here */}
+        <LessText text={appText} maxLength={maxLength} />
       </div>
       <div className="bg-secondary text-white pt-4 pb-4 mb-4">
         <div className="container">
