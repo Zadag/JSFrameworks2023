@@ -4,8 +4,7 @@ const LessText = ({ text, maxLength }) => {
   const [finalText, setFinalText] = useState(text);
   const [buttonText, setButtonText] = useState("More text");
 
-  const handleClick = (e) => {
-    console.log("handling", finalText.length, maxLength);
+  const handleClick = () => {
     if (finalText.length === maxLength) {
       setFinalText(text);
       setButtonText("Less text");
