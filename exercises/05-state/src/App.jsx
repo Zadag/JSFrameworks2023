@@ -1,4 +1,5 @@
 import "./App.css";
+import CharacterCount from "./components/CharacterCount/CharacterCount";
 import LessText from "./components/LessText/LessText";
 import WeatherDisplay from "./components/WeatherDisplay/WeatherDisplay";
 
@@ -19,7 +20,7 @@ function App() {
       <div className="bg-secondary text-white pt-4 pb-4 mb-4">
         <div className="container">
           <h1 className="h3">Challenge 2 - Character Count</h1>
-          {/* Add CharacterCount here */}
+          <CharacterCount />
         </div>
       </div>
       <div className="container">
