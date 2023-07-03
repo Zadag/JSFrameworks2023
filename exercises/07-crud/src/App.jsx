@@ -10,9 +10,14 @@ const GroceryList = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newGroceryItems = [
       ...groceryItems,
-      { name: groceryName, price: groceryPrice, itemId: uuidv4() },
+      {
+        name: groceryName,
+        price: parseFloat(groceryPrice).toFixed(2),
+        itemId: uuidv4(),
+      },
     ];
     setGroceryItems(newGroceryItems);
   };
@@ -34,6 +39,10 @@ const GroceryList = () => {
     setGroceryItems(newGroceryItems);
   };
 
+  const handleClear = () => {
+    setGroceryItems([]);
+  };
+
   return (
     <div className="container">
       <div className="card card-body bg-light mb-2">
@@ -45,6 +54,7 @@ const GroceryList = () => {
               placeholder="Name of grocery item..."
               aria-label="Name of grocery item..."
               name="itemName"
+              required
               value={groceryName}
               onChange={handleChange}
             />
@@ -109,10 +119,21 @@ const GroceryList = () => {
           </tbody>
         </table>
         <p className="lead">
-          <strong>Total Cost: {/* Complete me */}</strong>
+          <strong>
+            Total Cost:{" "}
+            {groceryItems
+              .reduce((total, curr) => {
+                return total + parseFloat(curr.price);
+              }, 0)
+              .toFixed(2)}
+          </strong>
         </p>
         <div className="d-flex justify-content-end">
-          <button type="button" className="btn btn-outline-success">
+          <button
+            type="button"
+            className="btn btn-outline-success"
+            onClick={handleClear}
+          >
             Clear
           </button>
         </div>
