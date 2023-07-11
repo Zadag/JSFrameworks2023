@@ -18,7 +18,7 @@ function App() {
    */
   return (
     <LanguageContext.Provider value={{ language, setLanguage }}>
-      <CreateAccount setLanguage={setLanguage} />
+      <CreateAccount />
     </LanguageContext.Provider>
   );
 }

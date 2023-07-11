@@ -12,4 +12,12 @@ export function TranslatorProvider({ children }) {
    * @see exercises/08a-context-api/src/App.jsx
    * @see solutions/08a-context-api/App.solutions.jsx
    */
+  const [language, setLanguage] = useState("en");
+
+  console.log(language);
+  return (
+    <TranslatorContext.Provider value={{ language, setLanguage }}>
+      <div>{children}</div>
+    </TranslatorContext.Provider>
+  );
 }
