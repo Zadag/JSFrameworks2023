@@ -18,27 +18,27 @@ function App() {
 
   // Solution 1
 
-  // const fetchDogs = async (num) => {
-  //   const res = await axios.get(
-  //     `https://dog.ceo/api/breeds/image/random/${num}`
-  //   );
-  //   return res.data.message;
-  // };
+  const fetchDogs = async (num) => {
+    const res = await axios.get(
+      `https://dog.ceo/api/breeds/image/random/${num}`
+    );
+    return res.data.message;
+  };
 
-  // const handleChange = async (e) => {
-  //   const dogNum = parseInt(e.target.value);
-  //   setHowManyDogs(dogNum);
-  //   const newDogImages = await fetchDogs(dogNum);
-  //   setDogImages([...newDogImages]);
-  // };
+  const handleChange = async (e) => {
+    const dogNum = parseInt(e.target.value);
+    setHowManyDogs(dogNum);
+    const newDogImages = await fetchDogs(dogNum);
+    setDogImages([...newDogImages]);
+  };
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
-  //     .then((res) => {
-  //       setDogImages([...dogImages, ...res.data.message]);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
+      .then((res) => {
+        setDogImages([...dogImages, ...res.data.message]);
+      });
+  }, []);
 
   // Solution 2
 
@@ -57,7 +57,6 @@ function App() {
   return (
     <div className="App">
       <h1>Dogs</h1>
-      {/* Make me a controlled input */}
       <select value={howManyDogs.toString()} onChange={handleChange}>
         <option value="1">1</option>
         <option value="2">2</option>
