@@ -1,7 +1,7 @@
 // Import useEffect here
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-// import Axios (or use Fetch)
+import axios from "axios";
 
 function App() {
   /**
@@ -14,20 +14,35 @@ function App() {
    * ]
    */
   const [dogImages, setDogImages] = useState([]);
+  const [howManyDogs, setHowManyDogs] = useState(1); // set initial selected option
 
-  /**
-   * You may need to set something else in state
-   */
+  const fetchDogs = async (num) => {
+    const res = await axios.get(
+      `https://dog.ceo/api/breeds/image/random/${num}`
+    );
+    return res.data.message;
+  };
 
-  /**
-   * Make an AJAX call with the useEffect hook
-   */
+  const handleChange = async (e) => {
+    const dogNum = parseInt(e.target.value);
+    setHowManyDogs(dogNum);
+    const newDogImages = await fetchDogs(dogNum);
+    setDogImages([...newDogImages]);
+  };
+
+  useEffect(() => {
+    axios
+      .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
+      .then((res) => {
+        setDogImages([...dogImages, ...res.data.message]);
+      });
+  }, []);
 
   return (
     <div className="App">
       <h1>Dogs</h1>
       {/* Make me a controlled input */}
-      <select>
+      <select value={howManyDogs.toString()} onChange={handleChange}>
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -41,7 +56,14 @@ function App() {
       </select>
       <div className="container">
         {dogImages.map((dogImage, idx) => {
-          return <img key={`dog-${idx}`} height="200" src={dogImage} />;
+          return (
+            <img
+              key={`dog-${idx}`}
+              height="200"
+              src={dogImage}
+              alt={"placeholder"}
+            />
+          );
         })}
       </div>
     </div>
