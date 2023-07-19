@@ -16,27 +16,43 @@ function App() {
   const [dogImages, setDogImages] = useState([]);
   const [howManyDogs, setHowManyDogs] = useState(1); // set initial selected option
 
-  const fetchDogs = async (num) => {
-    const res = await axios.get(
-      `https://dog.ceo/api/breeds/image/random/${num}`
-    );
-    return res.data.message;
-  };
+  // Solution 1
 
-  const handleChange = async (e) => {
-    const dogNum = parseInt(e.target.value);
-    setHowManyDogs(dogNum);
-    const newDogImages = await fetchDogs(dogNum);
-    setDogImages([...newDogImages]);
-  };
+  // const fetchDogs = async (num) => {
+  //   const res = await axios.get(
+  //     `https://dog.ceo/api/breeds/image/random/${num}`
+  //   );
+  //   return res.data.message;
+  // };
 
-  useEffect(() => {
-    axios
-      .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
-      .then((res) => {
-        setDogImages([...dogImages, ...res.data.message]);
-      });
-  }, []);
+  // const handleChange = async (e) => {
+  //   const dogNum = parseInt(e.target.value);
+  //   setHowManyDogs(dogNum);
+  //   const newDogImages = await fetchDogs(dogNum);
+  //   setDogImages([...newDogImages]);
+  // };
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
+  //     .then((res) => {
+  //       setDogImages([...dogImages, ...res.data.message]);
+  //     });
+  // }, []);
+
+  // Solution 2
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
+  //     .then((res) => {
+  //       setDogImages([...res.data.message]);
+  //     });
+  // }, [howManyDogs]);
+
+  // const handleChange = (e) => {
+  //   setHowManyDogs(parseInt(e.target.value));
+  // };
 
   return (
     <div className="App">
