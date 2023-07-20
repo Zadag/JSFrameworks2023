@@ -1,35 +1,45 @@
 // import useEffect
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
-// import Axios (or use Fetch)
+import axios from "axios";
+import Character from "./components/Character";
+import CharacterSelect from "./components/CharacterSelect";
 
 function App() {
   /**
    * Set up state and make AJAX requests here
    */
+  const [character, setCharacter] = useState({});
+  const [characterList, setCharacterList] = useState([]);
+
+  const handleSelect = (e) => {
+    setCharacter(e.target.id);
+    console.log(character);
+  };
+
+  useEffect(() => {
+    axios.get("https://rickandmortyapi.com/api/character").then((res) => {
+      setCharacterList(res.data.results);
+      setCharacter(res.data.results[0]);
+      console.log("here", res.data.results[0]);
+    });
+  }, []);
 
   return (
     <div className="container">
       <div className="row text-center" id="body">
-        <h1 id="title-head">{/* Plugin character name here */}</h1>
-        <div id="main-img">
-          <a href="http://rickandmorty.wikia.com/wiki/Rick_Sanchez">
-            {/* Add an alt and src to this image */}
-            <img height="250" />
-          </a>
-          <div className="linkfooter">
-            <p>Select your favorite character</p>
-            {/* Handle event here */}
-            <select id="dropdown" type="text">
-              <option></option>
-              {/**
-               * Loop through all characters. The value should be the character id.
-               * @example in HTML
-               * <option value="2" key="character-1">Morty Smith</option>
-               */}
-            </select>
-          </div>
-        </div>
+        {character ? (
+          <p>...Loading</p>
+        ) : (
+          <>
+            <Character character={character} />
+            <CharacterSelect
+              characterList={characterList}
+              character={character}
+              handleSelect={handleSelect}
+            />
+          </>
+        )}
       </div>
     </div>
   );
