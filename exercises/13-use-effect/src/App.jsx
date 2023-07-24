@@ -9,26 +9,28 @@ function App() {
   /**
    * Set up state and make AJAX requests here
    */
-  const [character, setCharacter] = useState({});
+  const [character, setCharacter] = useState(null);
   const [characterList, setCharacterList] = useState([]);
 
   const handleSelect = (e) => {
-    setCharacter(e.target.id);
-    console.log(character);
+    setCharacter(characterList[parseInt(e.target.value) - 1]);
   };
 
+  // Get all characters and save in state
   useEffect(() => {
     axios.get("https://rickandmortyapi.com/api/character").then((res) => {
       setCharacterList(res.data.results);
       setCharacter(res.data.results[0]);
-      console.log("here", res.data.results[0]);
+      console.log("character", res.data.results[0]);
+      console.log("character list", res.data.results);
     });
   }, []);
 
+  console.log(Boolean(character));
   return (
     <div className="container">
       <div className="row text-center" id="body">
-        {character ? (
+        {!character ? (
           <p>...Loading</p>
         ) : (
           <>

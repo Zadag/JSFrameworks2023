@@ -9,7 +9,7 @@ const CharacterSelect = ({ characterList, handleSelect, character }) => {
         id="dropdown"
         type="text"
         onChange={handleSelect}
-        //value={character.id}
+        value={character.id}
       >
         <option>Choose a character</option>
         {characterList.map((char) => {

@@ -18,6 +18,7 @@ function App() {
 
   // Solution 1
 
+  // fetch function
   const fetchDogs = async (num) => {
     const res = await axios.get(
       `https://dog.ceo/api/breeds/image/random/${num}`
@@ -25,6 +26,7 @@ function App() {
     return res.data.message;
   };
 
+  // handle select and dogImages state
   const handleChange = async (e) => {
     const dogNum = parseInt(e.target.value);
     setHowManyDogs(dogNum);
@@ -32,6 +34,7 @@ function App() {
     setDogImages([...newDogImages]);
   };
 
+  // on mount fetch and set initial image(s) 
   useEffect(() => {
     axios
       .get(`https://dog.ceo/api/breeds/image/random/${howManyDogs}`)
