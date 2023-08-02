@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 // Import something here
 
+
 function CatFact() {
   /**
    * You will not need state store the fact in state anymore after refactoring App.jsx to use Suspense.

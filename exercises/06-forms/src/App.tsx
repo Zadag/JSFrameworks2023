@@ -1,10 +1,16 @@
 import "./App.css";
 // Import here
+import React from "react";
 import { useState } from "react";
 import states from "./assets/states.json";
 import countries from "./assets/countries.json";
 
-function App() {
+type SubmitEventParam = React.MouseEvent<HTMLButtonElement>;
+type ChangeEventParam =
+  | React.ChangeEvent<HTMLInputElement>
+  | React.ChangeEvent<HTMLSelectElement>;
+
+function App(): React.ReactNode {
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
@@ -16,17 +22,17 @@ function App() {
     signUpForNewsLetter: false,
   });
 
-  const [checked, setChecked] = useState(false);
+  //const [checked, setChecked] = useState(false);
   const [showValues, setShowValues] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: SubmitEventParam) => {
     e.preventDefault();
     formIsValid() ? setShowValues(true) : setShowValues(false);
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEventParam) => {
     // if target is checkbox we need to toggle a boolean instead of changing text
-    if (e.target.name === "signUpForNewsLetter") {
+    if (e.currentTarget.name === "signUpForNewsLetter") {
       return setValues({
         ...values,
         signUpForNewsLetter: !values.signUpForNewsLetter,
@@ -35,7 +41,7 @@ function App() {
 
     setValues({
       ...values,
-      [e.target.name]: e.target.value,
+      [e.currentTarget.name]: e.currentTarget.value,
     });
   };
 
@@ -56,7 +62,7 @@ function App() {
           type="text"
           className="form-control"
           value={values.firstName}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </div>
       <div className="mb-3">
@@ -69,7 +75,7 @@ function App() {
           type="text"
           className="form-control"
           value={values.lastName}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </div>
       <div className="mb-3">
@@ -81,8 +87,8 @@ function App() {
           name="addressLine1"
           type="text"
           className="form-control"
-          value={values.address}
-          onChange={handleChange}
+          value={values.addressLine1}
+          onChange={(e) => handleChange(e)}
         />
         <p className="help-block text-muted">
           Street Address, P.O. Box, Company Name, C/O
@@ -99,7 +105,7 @@ function App() {
           type="text"
           className="form-control"
           value={values.city}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </div>
       <div className="mb-3">
@@ -112,7 +118,7 @@ function App() {
           name="state"
           className="form-control"
           value={values.state}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         >
           <option selected hidden disabled></option>
           {states.map((state, index) => {
@@ -135,7 +141,7 @@ function App() {
           type="number"
           className="form-control"
           value={values.postalCode}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
       </div>
 
@@ -149,7 +155,7 @@ function App() {
           name="country"
           className="form-control"
           value={values.country}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         >
           <option selected hidden disabled></option>
           {countries.map((country, index) => {
@@ -168,13 +174,17 @@ function App() {
           type="checkbox"
           className="form-check-input"
           checked={values.signUpForNewsLetter}
-          onChange={handleChange}
+          onChange={(e) => handleChange(e)}
         />
         <label htmlFor="signUpForNewsLetter" className="form-check-label">
           Sign Up For Newsletter
         </label>
       </div>
-      <button onClick={handleSubmit} type="submit" className="btn btn-primary">
+      <button
+        onClick={(e) => handleSubmit(e)}
+        type="submit"
+        className="btn btn-primary"
+      >
         Submit
       </button>
 
@@ -182,7 +192,6 @@ function App() {
        * Find a way to only display this once the form has been submitted.
        * Hint: You will need to change "false" below with something else
        */}
-      {console.log(values)}
       {showValues && (
         <div className="card card-body bg-light mt-4 mb-4">
           Results:
