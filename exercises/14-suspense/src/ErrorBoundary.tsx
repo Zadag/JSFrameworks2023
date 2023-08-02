@@ -1,14 +1,19 @@
 import { Component } from "react";
 
-class ErrorBoundary extends Component {
+type IProps = {
+  fallback: React.ReactNode;
+  children: React.ReactNode;
+};
+
+class ErrorBoundary extends Component<IProps> {
   state = { hasError: false, error: null };
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError(error: unknown) {
     return {
       hasError: true,
       error,
     };
   }
-  componentDidCatch(error, errorInfo) {
+  componentDidCatch(error: unknown, errorInfo: React.ErrorInfo) {
     console.error("Uncaught error:", error, errorInfo);
   }
   render() {
