@@ -32,7 +32,7 @@ function App(): React.ReactNode {
 
   const handleChange = (e: ChangeEventParam) => {
     // if target is checkbox we need to toggle a boolean instead of changing text
-    if (e.currentTarget.name === "signUpForNewsLetter") {
+    if (e.target.name === "signUpForNewsLetter") {
       return setValues({
         ...values,
         signUpForNewsLetter: !values.signUpForNewsLetter,
@@ -41,7 +41,7 @@ function App(): React.ReactNode {
 
     setValues({
       ...values,
-      [e.currentTarget.name]: e.currentTarget.value,
+      [e.target.name]: e.target.value,
     });
   };
 
