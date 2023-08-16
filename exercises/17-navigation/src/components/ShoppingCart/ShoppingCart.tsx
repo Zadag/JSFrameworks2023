@@ -2,11 +2,11 @@ import { useState, FormEvent } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./ShoppingCart.css";
 // Import something
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ShoppingCart() {
-  /**
-   * Add something here
-   */
+  const navigate = useNavigate();
 
   const [cardholderName, setCardholderName] = useState("");
   const [cardNumber, setCardNumber] = useState("");
@@ -21,11 +21,15 @@ function ShoppingCart() {
    * they will not see this page.
    */
 
+  const handleSubmit = () => {
+    navigate("/thank-you", { replace: true });
+  };
+
   return (
     <>
       <NavBar />
       <div className="uk-container">
-        <form className="ShoppingCart" method="POST">
+        <form className="ShoppingCart" method="POST" onSubmit={handleSubmit}>
           <fieldset className="uk-fieldset">
             <legend className="uk-legend">Checkout</legend>
 

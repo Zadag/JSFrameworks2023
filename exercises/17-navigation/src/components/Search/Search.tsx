@@ -1,9 +1,13 @@
-import { useState, FormEvent } from "react";
-import { Link } from "react-router-dom"; // Do you need to import anything else here?
+import { useState, FormEvent, SetStateAction, Dispatch } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // Do you need to import anything else here?
 import NavBar from "../NavBar/NavBar";
 import SearchImage from "./SearchImage";
 import { products } from "../../assets/products";
 
+type LocationState = [
+  query: string,
+  setQuery: Dispatch<SetStateAction<string>>
+];
 /**
  * This is what is doing "the search".
  * It's filtering the products based on the user input.
@@ -23,13 +27,17 @@ function Search() {
   /**
    * Add something here
    */
+  const navigate = useNavigate();
+  const location = useLocation();
+  const initialQueryState = location.state?.query ? location.state.query : "";
 
   /**
    * When the user hits the back and forward button, or refreshes the page,
    * you will need to get what the user search for from history.
    * Set the starting value of the text in the search textbox.
    */
-  const [query, setQuery] = useState("");
+
+  const [query, setQuery] = useState(initialQueryState) as LocationState;
   /**
    * This populates the search results.
    */
@@ -42,6 +50,7 @@ function Search() {
     /**
      * With "useNavigate", put what the user searched for in history.
      */
+    navigate("", { state: { query: query } });
   };
 
   return (
