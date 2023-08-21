@@ -1,6 +1,7 @@
 // You might need to import something from React
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { IMovie } from "../../types/movies";
+import { Navigate, useNavigate } from "react-router-dom";
 // import Axios (or use Fetch)
 
 type HomeProps = {
@@ -11,7 +12,16 @@ type HomeProps = {
 function Home({ token, logout }: HomeProps) {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const navigate = useNavigate();
 
+  const handleLogout = () => {
+    logout();
+    navigate("/search");
+  };
+
+  useEffect(() => {
+    const fetchWrapper = async () => {};
+  });
   /**
    * Make an AJAX request to http://localhost:7001/api/movies to get a list of movies.
    * Be sure to provide the token in the AJAX request.
@@ -22,7 +32,9 @@ function Home({ token, logout }: HomeProps) {
       <div className="d-flex justify-content-between">
         <h1 className="h2">You are logged in!</h1>
         {/* Make this button functional */}
-        <button className="btn btn-primary">Logout</button>
+        <button className="btn btn-primary" onClick={() => handleLogout()}>
+          Logout
+        </button>
       </div>
       {movies.map((movie, idx) => {
         return (

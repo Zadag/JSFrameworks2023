@@ -2,7 +2,6 @@ import { useState, FormEvent } from "react";
 import NavBar from "../NavBar/NavBar";
 import "./ShoppingCart.css";
 // Import something
-import { Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 function ShoppingCart() {
